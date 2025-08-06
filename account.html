@@ -150,11 +150,11 @@
 
     function generateAndStore() {
       const names = [
-        "أحمد المحترف", "ملك النار", "الصقر الجارح", "مهووس فري فاير", "الملك يوسف",
-        "أسد الساحة", "قناص الليل", "الذئب الأبيض", "نسر العرب", "محمد اللاعب",
-        "فتاة الأحلام", "نونا الجريئة", "سارة الكيوت", "أميرة الحرب", "شبح فري فاير",
-        "كيمو المصري", "زيزو المحترف", "نادر الأسطورة", "زهرة الحياة", "علاء النينجا",
-        "ملاك الظلام", "حمادة فاير", "رامي جولد", "يوسف الأسطورة", "بنت النار"
+        "AhmedPro", "FireKing", "SniperWolf", "DarkHunter", "LegendYoussef",
+        "ShadowKiller", "GhostPlayer", "ProGamer", "NinjaX", "FreeFireHero",
+        "CuteGirl", "NoonaBold", "SarahQueen", "PrincessWar", "FFGhost",
+        "KimoEGY", "ZizoPro", "NaderLegend", "RoseLife", "AlaaNinja",
+        "DarkAngel", "HamadaFF", "RamyGold", "YoussefLegend", "FireGirl"
       ];
 
       const allEmails = [
@@ -174,7 +174,7 @@
 
       const email = allEmails[Math.floor(Math.random() * allEmails.length)];
       const user = names[Math.floor(Math.random() * names.length)];
-      const pass = user.replace(/\s/g, '').slice(0, 3).toLowerCase() + (Math.floor(Math.random() * 9000) + 1000) + "!";
+      const pass = generatePassword();
       const level = Math.floor(Math.random() * 31) + 50;
       const gems = Math.floor(Math.random() * 495001) + 5000;
       const gold = Math.floor(Math.random() * 495001) + 5000;
@@ -191,6 +191,15 @@
       localStorage.setItem("ff_type", type);
 
       updateDisplay();
+    }
+
+    function generatePassword() {
+      const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+      let password = "";
+      for (let i = 0; i < 10; i++) {
+        password += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      return password;
     }
 
     function updateDisplay() {
