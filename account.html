@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>حساب فري فاير قديم مجاني</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+    :root {
+      --primary: #00ff88;
+      --bg: #121212;
+      --card: #1f1f1f;
+      --text: #e0e0e0;
+      --bar-color: #00b894;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 20px; font-family: 'Cairo', sans-serif; background: var(--bg); color: var(--text); display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+    h1 { color: var(--primary); margin-bottom: 10px; font-size: 1.8em; }
+    .alert { width: 100%; max-width: 400px; padding: 12px; border-radius: 8px; margin-bottom: 12px; text-align: center; font-weight: bold; }
+    .alert-success { background: #4caf50; color: #fff; }
+    .alert-info { background: #3da9f5; color: #fff; }
+    .card { background: var(--card); border-radius: 12px; padding: 25px; width: 100%; max-width: 400px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); margin-bottom: 15px; }
+    .data-row { display: flex; justify-content: space-between; margin: 8px 0; font-size: 0.95em; }
+    .data-row span { font-weight: bold; }
+    .btn { padding: 10px 18px; font-size: 15px; border: none; border-radius: 6px; cursor: pointer; margin: 8px 0; width: 100%; max-width: 400px; }
+    .btn-copy { background: var(--primary); color: var(--bg); width: auto; margin-left: 8px; }
+    .btn-copy:hover { background: #00cc6a; }
+    .btn-generate { background: var(--primary); color: #121212; }
+    .btn-generate.disabled { background: gray; cursor: not-allowed; }
+    #triesLeft { margin: 10px 0; color: var(--primary); font-weight: bold; font-size: 0.95em; }
+
+    /* عداد احترافي */
+    #countdownMessage { margin-top: 10px; text-align: center; font-size: 0.95em; font-weight: bold; color: var(--text); display: none; }
+    #countdownContainer { width: 100%; max-width: 400px; background: #333; border-radius: 8px; overflow: hidden; margin-top: 8px; height: 50px; display: none; align-items: center; justify-content: center; position: relative; }
+    #countdownBar { position: absolute; left: 0; top: 0; height: 100%; width: 0%; background: var(--bar-color); transition: width 0.2s linear; }
+    #countdownText { position: absolute; width: 100%; text-align: center; font-weight: bold; color: #121212; font-size: 1.2em; white-space: nowrap; }
+  </style>
+</head>
+<body>
+
+<h1>حساب فري فاير قديم مجاني</h1>
+
+<div class="alert alert-success">✔ تم إنشاء الحساب بنجاح</div>
+<div class="alert alert-info">إذا لم يعمل معك الحساب هذا، اضغط على زر "إنشاء حساب آخر"</div>
+
+<div class="card">
+  <div class="data-row"><span>👤 اسم الحساب:</span><span id="username">--</span></div>
+  <div class="data-row"><span>🏅 ليفل الحساب:</span><span id="level">--</span></div>
+  <div class="data-row"><span>💎 عدد الجواهر:</span><span id="gems">--</span></div>
+  <div class="data-row"><span>🪙 عدد الذهب:</span><span id="gold">--</span></div>
+  <div class="data-row"><span>⚧ جنس الحساب:</span><span id="gender">--</span></div>
+  <div class="data-row"><span>🔗 نوع الحساب:</span><span id="acctType">--</span></div>
+  <hr style="border:1px solid #333; margin:15px 0;">
+  <div class="data-row"><span>📧 البريد الإلكتروني:</span><span id="email">--</span><button class="btn btn-copy" onclick="copyText('email')">نسخ</button></div>
+  <div class="data-row"><span>🔐 كلمة السر:</span><span id="password">--</span><button class="btn btn-copy" onclick="copyText('password')">نسخ</button></div>
+</div>
+
+<div id="triesLeft"></div>
+<button id="generateBtn" class="btn btn-generate" onclick="handleGenerate()">🔁 إنشاء حساب آخر</button>
+
+<div id="countdownMessage">⏳ لا يمكنك إنشاء حساب آخر الآن، يرجى الانتظار حتى انتهاء العد التنازلي</div>
+<div id="countdownContainer">
+  <div id="countdownBar"></div>
+  <div id="countdownText"></div>
+</div>
+
+<script>
+const maxTries = 1;
+// هنا يمكنك تغيير قيمة العداد بسهولة بالمللي ثانية
+const cooldownTime = 20 * 1000; // 10 ثوانٍ
+const shortLinks = ["https://linkjust.com/u6QBoj40"];
+
+let attempts = parseInt(localStorage.getItem("account_attempts") || "0");
+let endTime = parseInt(localStorage.getItem("countdown_end") || 0);
+
+const params = new URLSearchParams(window.location.search);
+const returned = params.get("return") === "1";
+
+if(returned){
+  if(attempts < maxTries){
+    attempts++;
+    localStorage.setItem("account_attempts", attempts);
+    endTime = Date.now() + cooldownTime;
+    localStorage.setItem("countdown_end", endTime);
+    generateAndStore();
+  }
+  history.replaceState(null, "", window.location.pathname);
+}
+
+function generateAndStore(){
+  const names = ["AhmedPro", "FireKing", "SniperWolf", "DarkHunter", "LegendYoussef",
+        "ShadowKiller", "GhostPlayer", "ProGamer", "NinjaX", "FreeFireHero",
+        "CuteGirl", "NoonaBold", "SarahQueen", "PrincessWar", "FFGhost",
+        "KimoEGY", "ZizoPro", "NaderLegend", "RoseLife", "AlaaNinja",
+        "DarkAngel", "HamadaFF", "RamyGold", "YoussefLegend", "FireGirl"];
+
+  const emails = ["ahmedali128@gmail.com","mohamed2020@gmail.com","mohammed2012@gmail.com","gamerpro99@gmail.com",
+        "karim.elmasry@gmail.com","saraqueen22@gmail.com","omar.freefire@gmail.com","nour.cute93@gmail.com",
+        "micheal2001@gmail.com","sarafire1@gmail.com","ahmedpromax@gmail.com","shakarman4@gmail.com",
+        "moustafafreefire@gmail.com","marymary23@gmail.com","kariemahmed22@gmail.com","kacemmoustafa@gmail.com"];
+
+  const email = emails[Math.floor(Math.random()*emails.length)];
+  const user = names[Math.floor(Math.random()*names.length)];
+  const pass = generatePassword();
+  const level = Math.floor(Math.random()*31)+50;
+  const gems = Math.floor(Math.random()*495001)+5000;
+  const gold = Math.floor(Math.random()*495001)+5000;
+  const gender = Math.random()<0.5?"ذكر":"أنثى";
+  const type = email.endsWith("@gmail.com")?"جيميل":"فيس بوك";
+
+  localStorage.setItem("ff_username", user);
+  localStorage.setItem("ff_email", email);
+  localStorage.setItem("ff_password", pass);
+  localStorage.setItem("ff_level", level);
+  localStorage.setItem("ff_gems", gems);
+  localStorage.setItem("ff_gold", gold);
+  localStorage.setItem("ff_gender", gender);
+  localStorage.setItem("ff_type", type);
+
+  updateDisplay();
+}
+
+function generatePassword(){
+  const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  let pass = "";
+  for(let i=0;i<10;i++) pass += chars.charAt(Math.floor(Math.random()*chars.length));
+  return pass;
+}
+
+function updateDisplay(){
+  document.getElementById("username").textContent = localStorage.getItem("ff_username") || "--";
+  document.getElementById("level").textContent = localStorage.getItem("ff_level") || "--";
+  document.getElementById("gems").textContent = localStorage.getItem("ff_gems") || "--";
+  document.getElementById("gold").textContent = localStorage.getItem("ff_gold") || "--";
+  document.getElementById("gender").textContent = localStorage.getItem("ff_gender") || "--";
+  document.getElementById("acctType").textContent = localStorage.getItem("ff_type") || "--";
+  document.getElementById("email").textContent = localStorage.getItem("ff_email") || "--";
+  document.getElementById("password").textContent = localStorage.getItem("ff_password") || "--";
+  document.getElementById("triesLeft").textContent = `🔄 لديك ${maxTries - attempts} محاولة متبقية اليوم`;
+
+  if(attempts >= maxTries && endTime > Date.now()) disableGenerate();
+}
+
+function handleGenerate(){
+  if(attempts >= maxTries) return;
+  window.location.href = `${shortLinks[0]}?return=1`;
+}
+
+function disableGenerate(){
+  const btn = document.getElementById("generateBtn");
+  btn.classList.add("disabled");
+  btn.disabled = true;
+
+  const now = Date.now();
+  if(endTime && endTime > now) {
+    document.getElementById("countdownMessage").style.display = "block";
+    document.getElementById("countdownContainer").style.display = "flex";
+    startCountdown();
+  }
+}
+
+function startCountdown(){
+  const bar = document.getElementById("countdownBar");
+  const text = document.getElementById("countdownText");
+
+  function tick(){
+    const now = Date.now();
+    let diff = endTime - now;
+
+    if(diff <= 0){
+      localStorage.setItem("account_attempts","0");
+      localStorage.removeItem("countdown_end");
+      attempts = 0;
+      window.location.href = "index.html";
+      return;
+    }
+
+    const percent = ((cooldownTime - diff)/cooldownTime) * 100;
+    bar.style.width = percent + "%";
+
+    const totalSeconds = Math.ceil(diff/1000);
+    const hours = Math.floor(totalSeconds/3600);
+    const minutes = Math.floor((totalSeconds % 3600)/60);
+    const seconds = totalSeconds % 60;
+
+    text.textContent = `⏳ انتظر ${hours}س ${minutes}د ${seconds}ث`;
+
+    requestAnimationFrame(tick);
+  }
+
+  tick();
+}
+
+function copyText(id){
+  const txt = document.getElementById(id).textContent;
+  navigator.clipboard.writeText(txt).then(()=>{
+    const info = document.createElement("div");
+    info.className="alert alert-success";
+    info.textContent = `✔ تم النسخ: ${txt}`;
+    document.body.insertBefore(info,document.querySelector(".card"));
+    setTimeout(()=>info.remove(),3000);
+  });
+}
+
+window.addEventListener("load",()=>{
+  updateDisplay();
+});
+</script>
+</body>
+</html>
