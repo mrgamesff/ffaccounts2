@@ -25,10 +25,7 @@
       width: 90%;
       max-width: 400px;
     }
-    h1 {
-      font-size: 2em;
-      margin-bottom: 20px;
-    }
+    h1 { font-size: 2em; margin-bottom: 20px; }
     .btn {
       background-color: #00ff88;
       color: #000;
@@ -39,9 +36,7 @@
       cursor: pointer;
       transition: .3s;
     }
-    .btn:hover {
-      background-color: #00cc6a;
-    }
+    .btn:hover { background-color: #00cc6a; }
   </style>
 </head>
 <body>
@@ -52,8 +47,9 @@
 
   <script>
     function redirectToAccount() {
-      // يتم تحويل المستخدم إلى رابط مختصر يؤدي إلى account.html
-      window.location.href = 'https://xdabo.com/YTScLef'; // استبدل بالرابط الصحيح
+      // وضع علامة المرور من index.html قبل الانتقال
+      localStorage.setItem("fromIndex", "1");
+      window.location.href = 'account.html?return=1';
     }
   </script>
 </body>
