@@ -14,155 +14,190 @@
       --text: #e0e0e0;
       --alert-info: #3da9f5;
       --alert-success: #4caf50;
+      --alert-error: #f44336;
     }
     * { box-sizing: border-box; }
-    body { margin:0; padding:20px; font-family:'Cairo',sans-serif; background:var(--bg); color:var(--text); display:flex; flex-direction:column; align-items:center; min-height:100vh; }
-    h1 { color: var(--primary); margin-bottom:10px; font-size:1.8em; }
-    .alert { width:100%; max-width:400px; padding:12px; border-radius:8px; margin-bottom:12px; text-align:center; font-weight:bold; }
-    .alert-success { background: var(--alert-success); color:#fff; }
-    .alert-info { background: var(--alert-info); color:#fff; }
-    .card { background:var(--card); border-radius:12px; padding:25px; width:100%; max-width:400px; box-shadow:0 4px 15px rgba(0,0,0,0.5); margin-bottom:15px; }
-    .data-row { display:flex; justify-content:space-between; margin:8px 0; font-size:0.95em; }
-    .data-row span { font-weight:bold; }
-    .btn { padding:10px 18px; font-size:15px; border:none; border-radius:6px; cursor:pointer; margin:8px 0; width:100%; max-width:400px; }
-    .btn-copy { background:var(--primary); color:var(--bg); width:auto; margin-left:8px; }
-    .btn-copy:hover { background:#00cc6a; }
-    .btn-generate { background:var(--secondary); color:#fff; }
-    .btn-generate.disabled { background:gray; cursor:not-allowed; }
-    #triesLeft { margin:10px 0; color:var(--primary); font-weight:bold; font-size:0.95em; }
-    #countdown { margin-top:10px; font-size:0.9em; }
+    body {
+      margin: 0; padding: 20px;
+      font-family: 'Cairo', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      display: flex; flex-direction: column;
+      align-items: center; min-height: 100vh;
+    }
+    h1 { color: var(--primary); margin-bottom: 10px; font-size: 1.8em; }
+    .alert { width: 100%; max-width: 400px; padding: 12px; border-radius: 8px; margin-bottom: 12px; text-align: center; font-weight: bold; }
+    .alert-success { background: var(--alert-success); color: #fff; }
+    .alert-info { background: var(--alert-info); color: #fff; }
+    .card { background: var(--card); border-radius: 12px; padding: 25px; width: 100%; max-width: 400px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); margin-bottom: 15px; }
+    .data-row { display: flex; justify-content: space-between; margin: 8px 0; font-size: 0.95em; }
+    .data-row span { font-weight: bold; }
+    .btn { padding: 10px 18px; font-size: 15px; border: none; border-radius: 6px; cursor: pointer; margin: 8px 0; width: 100%; max-width: 400px; }
+    .btn-copy { background: var(--primary); color: var(--bg); width: auto; margin-left: 8px; }
+    .btn-copy:hover { background: #00cc6a; }
+    .btn-generate { background: var(--secondary); color: #fff; }
+    .btn-generate.disabled { background: gray; cursor: not-allowed; }
+    #triesLeft { margin: 10px 0; color: var(--primary); font-weight: bold; font-size: 0.95em; }
+    #countdown { margin-top: 10px; font-size: 0.9em; }
   </style>
 </head>
 <body>
 
-<h1>حساب فري فاير قديم مجاني</h1>
+  <h1>حساب فري فاير قديم مجاني</h1>
 
-<div class="alert alert-success">✔ تم إنشاء الحساب بنجاح</div>
-<div class="alert alert-info">إذا لم يعمل معك الحساب هذا يعني انه تم استخدامه، اضغط على زر "إنشاء حساب آخر" في الاسفل</div>
-
-<div class="card">
-  <div class="data-row"><span>👤 اسم الحساب:</span><span id="username">--</span></div>
-  <div class="data-row"><span>🏅 ليفل الحساب:</span><span id="level">--</span></div>
-  <div class="data-row"><span>💎 عدد الجواهر:</span><span id="gems">--</span></div>
-  <div class="data-row"><span>🪙 عدد الذهب:</span><span id="gold">--</span></div>
-  <div class="data-row"><span>⚧ جنس الحساب:</span><span id="gender">--</span></div>
-  <div class="data-row"><span>🔗 نوع الحساب:</span><span id="acctType">--</span></div>
-  <hr style="border:1px solid #333; margin:15px 0;">
-  <div class="data-row">
-    <span>📧 البريد الإلكتروني:</span><span id="email">--</span>
-    <button class="btn btn-copy" onclick="copyText('email')">نسخ</button>
+  <div class="alert alert-success">✔ تم إنشاء الحساب بنجاح</div>
+  <div class="alert alert-info">
+    إذا لم يعمل معك الحساب هذا يعني انه تم استخدامه،  لذا اضغط على زر "إنشاء حساب آخر" الذي في الاسفل
   </div>
-  <div class="data-row">
-    <span>🔐 كلمة السر:</span><span id="password">--</span>
-    <button class="btn btn-copy" onclick="copyText('password')">نسخ</button>
+
+  <div class="card">
+    <div class="data-row"><span>👤 اسم الحساب:</span><span id="username">--</span></div>
+    <div class="data-row"><span>🏅 ليفل الحساب:</span><span id="level">--</span></div>
+    <div class="data-row"><span>💎 عدد الجواهر:</span><span id="gems">--</span></div>
+    <div class="data-row"><span>🪙 عدد الذهب:</span><span id="gold">--</span></div>
+    <div class="data-row"><span>⚧ جنس الحساب:</span><span id="gender">--</span></div>
+    <div class="data-row"><span>🔗 نوع الحساب:</span><span id="acctType">--</span></div>
+    <hr style="border:1px solid #333; margin:15px 0;">
+    <div class="data-row">
+      <span>📧 البريد الإلكتروني:</span><span id="email">--</span>
+      <button class="btn btn-copy" onclick="copyText('email')">نسخ</button>
+    </div>
+    <div class="data-row">
+      <span>🔐 كلمة السر:</span><span id="password">--</span>
+      <button class="btn btn-copy" onclick="copyText('password')">نسخ</button>
+    </div>
   </div>
-</div>
 
-<div id="triesLeft"></div>
-<button id="generateBtn" class="btn btn-generate" onclick="handleGenerate()">🔁 إنشاء حساب آخر</button>
-<div id="countdown"></div>
+  <div id="triesLeft"></div>
+  <button id="generateBtn" class="btn btn-generate" onclick="handleGenerate()">🔁 إنشاء حساب آخر</button>
+  <div id="countdown"></div>
 
-<script>
-const maxTries=1;
-const shortLinks=["https://linkjust.com/u6QBoj40"];
-let attempts=parseInt(localStorage.getItem("account_attempts")||"0");
-let lastResetTime=parseInt(localStorage.getItem("last_reset_time")||Date.now());
-
-// منع الدخول المباشر إذا نفدت المحاولات ولم يأتِ من index.html
-if(attempts>=maxTries && localStorage.getItem("fromIndex")!=="1"){
-  alert("❌ لا يمكنك الدخول مباشرة. سيتم تحويلك للصفحة الرئيسية.");
-  window.location.href="index.html";
-}
-
-window.addEventListener("load",()=>{
-  if(!localStorage.getItem("last_reset_time")) localStorage.setItem("last_reset_time",Date.now());
-  updateDisplay();
-});
-
-function generateAndStore(){
-  const names=["AhmedPro","FireKing","SniperWolf","DarkHunter","LegendYoussef","ShadowKiller","GhostPlayer","ProGamer","NinjaX","FreeFireHero","CuteGirl","NoonaBold","SarahQueen","PrincessWar","FFGhost","KimoEGY","ZizoPro","NaderLegend","RoseLife","AlaaNinja","DarkAngel","HamadaFF","RamyGold","YoussefLegend","FireGirl"];
-  const allEmails=["ahmedali128@gmail.com","mohamed2020@gmail.com","mohammed2012@gmail.com","gamerpro99@gmail.com","karim.elmasry@gmail.com","saraqueen22@gmail.com","omar.freefire@gmail.com","nour.cute93@gmail.com","micheal2001@gmail.com","sarafire1@gmail.com","ahmedpromax@gmail.com","shakarman4@gmail.com","moustafafreefire@gmail.com","marymary23@gmail.com","kariemahmed22@gmail.com","kacemmoustafa@gmail.com"];
-  const email=allEmails[Math.floor(Math.random()*allEmails.length)];
-  const user=names[Math.floor(Math.random()*names.length)];
-  const pass=generatePassword();
-  const level=Math.floor(Math.random()*31)+50;
-  const gems=Math.floor(Math.random()*495001)+5000;
-  const gold=Math.floor(Math.random()*495001)+5000;
-  const gender=Math.random()<0.5?"ذكر":"أنثى";
-  const type=email.endsWith("@gmail.com")?"جيميل":"فيس بوك";
-
-  localStorage.setItem("ff_username",user);
-  localStorage.setItem("ff_email",email);
-  localStorage.setItem("ff_password",pass);
-  localStorage.setItem("ff_level",level);
-  localStorage.setItem("ff_gems",gems);
-  localStorage.setItem("ff_gold",gold);
-  localStorage.setItem("ff_gender",gender);
-  localStorage.setItem("ff_type",type);
-
-  updateDisplay();
-}
-
-function generatePassword(){const chars="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";let p="";for(let i=0;i<10;i++)p+=chars.charAt(Math.floor(Math.random()*chars.length));return p;}
-
-function updateDisplay(){
-  document.getElementById("username").textContent=localStorage.getItem("ff_username")||"--";
-  document.getElementById("level").textContent=localStorage.getItem("ff_level")||"--";
-  document.getElementById("gems").textContent=localStorage.getItem("ff_gems")||"--";
-  document.getElementById("gold").textContent=localStorage.getItem("ff_gold")||"--";
-  document.getElementById("gender").textContent=localStorage.getItem("ff_gender")||"--";
-  document.getElementById("acctType").textContent=localStorage.getItem("ff_type")||"--";
-  document.getElementById("email").textContent=localStorage.getItem("ff_email")||"--";
-  document.getElementById("password").textContent=localStorage.getItem("ff_password")||"--";
-
-  document.getElementById("triesLeft").textContent=`🔄 لديك ${maxTries-attempts} محاولة متبقية اليوم`;
-  if(attempts>=maxTries) disableGenerate();
-}
-
-function handleGenerate(){
-  if(attempts>=maxTries) return;
-  const link=shortLinks[0];
-  window.location.href=`${link}?return=1`;
-}
-
-function disableGenerate(){
-  const btn=document.getElementById("generateBtn");
-  btn.classList.add("disabled");
-  btn.disabled=true;
-  startCountdown();
-}
-
-function startCountdown(){
-  const nextReset=lastResetTime+10*1000;
-  (function tick(){
-    const diff=nextReset-Date.now();
-    if(diff<=0){
-      localStorage.setItem("account_attempts","0");
-      localStorage.setItem("last_reset_time",Date.now());
-      attempts=0; lastResetTime=Date.now();
-      document.getElementById("countdown").textContent="";
-      localStorage.setItem("fromIndex","0");
-      window.location.href="index.html";
-      return;
+  <script>
+    // منع الدخول المباشر بدون المرور من index.html
+    if (!sessionStorage.getItem("fromIndex")) {
+      alert("❌ يجب الدخول من الصفحة الرئيسية للحصول على الحساب!");
+      window.location.href = "index.html";
     }
-    const h=Math.floor(diff/(1000*60*60));
-    const m=Math.floor((diff%(1000*60*60))/(1000*60));
-    const s=Math.floor((diff%(1000*60))/1000);
-    document.getElementById("countdown").textContent=`⏳ انتظر ${h}س ${m}د ${s}ث قبل المحاولة الجديدة`;
-    setTimeout(tick,1000);
-  })();
-}
 
-function copyText(id){
-  const txt=document.getElementById(id).textContent;
-  navigator.clipboard.writeText(txt).then(()=>{
-    const info=document.createElement("div");
-    info.className="alert alert-success";
-    info.textContent=`✔ تم النسخ: ${txt}`;
-    document.body.insertBefore(info,document.querySelector(".card"));
-    setTimeout(()=>info.remove(),3000);
-  });
-}
-</script>
+    const maxTries = 1; // محاولة واحدة فقط
+    const shortLinks = ["https://linkjust.com/u6QBoj40"];
+    let attempts = parseInt(localStorage.getItem("account_attempts") || "0");
+    let lastResetTime = parseInt(localStorage.getItem("last_reset_time") || Date.now());
+    const now = Date.now();
+    const params = new URLSearchParams(window.location.search);
+    const returned = params.get("return") === "1";
+
+    if (returned) {
+      if (now - lastResetTime >= 10 * 1000) { attempts = 0; lastResetTime = now; }
+      if (attempts < maxTries) {
+        attempts++;
+        localStorage.setItem("account_attempts", attempts);
+        localStorage.setItem("last_reset_time", lastResetTime);
+        generateAndStore();
+      }
+      history.replaceState(null, "", window.location.pathname);
+    }
+
+    function generateAndStore() {
+      const names = ["AhmedPro","FireKing","SniperWolf","DarkHunter","LegendYoussef","ShadowKiller","GhostPlayer","ProGamer","NinjaX","FreeFireHero","CuteGirl","NoonaBold","SarahQueen","PrincessWar","FFGhost","KimoEGY","ZizoPro","NaderLegend","RoseLife","AlaaNinja","DarkAngel","HamadaFF","RamyGold","YoussefLegend","FireGirl"];
+      const allEmails = ["ahmedali128@gmail.com","mohamed2020@gmail.com","mohammed2012@gmail.com","gamerpro99@gmail.com","karim.elmasry@gmail.com","saraqueen22@gmail.com","omar.freefire@gmail.com","nour.cute93@gmail.com","micheal2001@gmail.com","sarafire1@gmail.com","ahmedpromax@gmail.com","shakarman4@gmail.com","moustafafreefire@gmail.com","marymary23@gmail.com","kariemahmed22@gmail.com","kacemmoustafa@gmail.com"];
+
+      const email = allEmails[Math.floor(Math.random() * allEmails.length)];
+      const user = names[Math.floor(Math.random() * names.length)];
+      const pass = generatePassword();
+      const level = Math.floor(Math.random() * 31) + 50;
+      const gems = Math.floor(Math.random() * 495001) + 5000;
+      const gold = Math.floor(Math.random() * 495001) + 5000;
+      const gender = Math.random() < 0.5 ? "ذكر" : "أنثى";
+      const type = email.endsWith("@gmail.com") ? "جيميل" : "فيس بوك";
+
+      localStorage.setItem("ff_username", user);
+      localStorage.setItem("ff_email", email);
+      localStorage.setItem("ff_password", pass);
+      localStorage.setItem("ff_level", level);
+      localStorage.setItem("ff_gems", gems);
+      localStorage.setItem("ff_gold", gold);
+      localStorage.setItem("ff_gender", gender);
+      localStorage.setItem("ff_type", type);
+
+      updateDisplay();
+    }
+
+    function generatePassword() {
+      const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+      let password = "";
+      for (let i = 0; i < 10; i++) password += chars.charAt(Math.floor(Math.random() * chars.length));
+      return password;
+    }
+
+    function updateDisplay() {
+      document.getElementById("username").textContent = localStorage.getItem("ff_username") || "--";
+      document.getElementById("level").textContent = localStorage.getItem("ff_level") || "--";
+      document.getElementById("gems").textContent = localStorage.getItem("ff_gems") || "--";
+      document.getElementById("gold").textContent = localStorage.getItem("ff_gold") || "--";
+      document.getElementById("gender").textContent = localStorage.getItem("ff_gender") || "--";
+      document.getElementById("acctType").textContent = localStorage.getItem("ff_type") || "--";
+      document.getElementById("email").textContent = localStorage.getItem("ff_email") || "--";
+      document.getElementById("password").textContent = localStorage.getItem("ff_password") || "--";
+
+      document.getElementById("triesLeft").textContent =
+        `🔄 لديك ${maxTries - attempts} محاولة متبقية اليوم`;
+
+      if (attempts >= maxTries) disableGenerate();
+    }
+
+    function handleGenerate() {
+      if (attempts >= maxTries) return;
+      const link = shortLinks[0];
+      window.location.href = `${link}?return=1`;
+    }
+
+    function disableGenerate() {
+      const btn = document.getElementById("generateBtn");
+      btn.classList.add("disabled");
+      btn.disabled = true;
+      startCountdown();
+    }
+
+    function startCountdown() {
+      const nextReset = lastResetTime + 10 * 1000;
+      (function tick() {
+        const diff = nextReset - Date.now();
+        if (diff <= 0) {
+          localStorage.setItem("account_attempts", "0");
+          localStorage.setItem("last_reset_time", Date.now());
+          attempts = 0; lastResetTime = Date.now();
+          document.getElementById("countdown").textContent = "";
+          alert("✅ انتهى الوقت، سيتم تحويلك للصفحة الرئيسية!");
+          window.location.href = "index.html";
+          return;
+        }
+        const h = Math.floor(diff / (1000 * 60 * 60));
+        const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const s = Math.floor((diff % (1000 * 60)) / 1000);
+        document.getElementById("countdown").textContent =
+          `⏳ انتظر ${h}س ${m}د ${s}ث قبل المحاولة الجديدة`;
+        setTimeout(tick, 1000);
+      })();
+    }
+
+    function copyText(id) {
+      const txt = document.getElementById(id).textContent;
+      navigator.clipboard.writeText(txt).then(() => {
+        const info = document.createElement("div");
+        info.className = "alert alert-success";
+        info.textContent = `✔ تم النسخ: ${txt}`;
+        document.body.insertBefore(info, document.querySelector(".card"));
+        setTimeout(() => info.remove(), 3000);
+      });
+    }
+
+    window.addEventListener("load", () => {
+      if (!localStorage.getItem("last_reset_time")) {
+        localStorage.setItem("last_reset_time", Date.now());
+      }
+      updateDisplay();
+    });
+  </script>
 </body>
 </html>
