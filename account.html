@@ -66,9 +66,13 @@
 
 <script>
 const maxTries = 1;
-// هنا يمكنك تغيير قيمة العداد بسهولة بالمللي ثانية
-const cooldownTime = 24 * 60 * 60 * 1000; // 24 ساعة
+const cooldownTime = 1 * 60 * 1000; // 1 دقيقة بالمللي ثانية
 const shortLinks = ["https://linkjust.com/u6QBoj40"];
+
+// منع الدخول المباشر من البحث أو الروابط الخارجية
+if (!document.referrer.includes("index.html")) {
+  window.location.href = "index.html";
+}
 
 let attempts = parseInt(localStorage.getItem("account_attempts") || "0");
 let endTime = parseInt(localStorage.getItem("countdown_end") || 0);
@@ -184,16 +188,16 @@ function startCountdown(){
 
 function copyText(id){
   const txt = document.getElementById(id).textContent;
-  navigator.clipboard.writeText(txt).then(()=>{
+  navigator.clipboard.writeText(txt).then(()=> {
     const info = document.createElement("div");
     info.className="alert alert-success";
     info.textContent = `✔ تم النسخ: ${txt}`;
-    document.body.insertBefore(info,document.querySelector(".card"));
-    setTimeout(()=>info.remove(),3000);
+    document.body.insertBefore(info, document.querySelector(".card"));
+    setTimeout(()=> info.remove(), 3000);
   });
 }
 
-window.addEventListener("load",()=>{
+window.addEventListener("load", ()=>{
   updateDisplay();
 });
 </script>
